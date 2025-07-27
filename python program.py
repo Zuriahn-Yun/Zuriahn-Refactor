@@ -15,8 +15,7 @@ def multiply(x, y):
 # This function divides two numbers
 def divide(x, y):
     return x / y
-
-
+        
 print("Select operation.")
 print("1.Add")
 print("2.Subtract")
@@ -29,8 +28,20 @@ while True:
 
     # check if choice is one of the four options
     if choice in ('1', '2', '3', '4'):
-        num1 = float(input("Enter first number: "))
-        num2 = float(input("Enter second number: "))
+        num1 = None
+        num2 = None
+        
+        # while user input is not valid
+        while type(num1) is not float:
+            try:
+                num1 = float(input("Enter first number: ")) 
+            except Exception:
+                print("Not a valid number, Please try again")        
+        while type(num2) is not float:
+            try:
+                num2 = float(input("Enter second number:"))
+            except Exception:
+                print("Not a valid number")
 
         if choice == '1':
             print(num1, "+", num2, "=", add(num1, num2))
@@ -46,9 +57,14 @@ while True:
         
         # check if user wants another calculation
         # break the while loop if answer is no
-        next_calculation = input("Let's do next calculation? (yes/no): ")
-        if next_calculation == "no":
-          break
+        options = ["yes","no"]
+        next_calculation = None
+        while next_calculation not in options:
+            next_calculation = input("Let's do next calculation? (yes/no): ")
+            if next_calculation == "no":
+                quit()
+            else:
+                print("Not a valid decision")
     
     else:
         print("Invalid Input")
